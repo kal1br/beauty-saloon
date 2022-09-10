@@ -10,4 +10,5 @@
 
 .nav-list .active {
     color: #CDAA7D;
+    border-bottom: 1px solid #CDAA7D;
 }
