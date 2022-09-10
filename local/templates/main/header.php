@@ -12,6 +12,9 @@ use Bitrix\Main\Page\Asset;
 
     <?php
         Asset::getInstance()->addCss(MAIN_TEMPLATE_PATH . '/css/style.css');
+
+        Asset::getInstance()->addJs(MAIN_TEMPLATE_PATH . '/js/script.js');
+
         Asset::getInstance()->addString('<meta charset="UTF-8">');
         Asset::getInstance()->addString('<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">');
         Asset::getInstance()->addString('<meta http-equiv="X-UA-Compatible" content="ie=edge">');
@@ -27,7 +30,7 @@ use Bitrix\Main\Page\Asset;
 
     <div class="wrapper">
         <div class="content">
-            <header class="header">
+            <header class="header" id="header">
                 <div class="container">
                     <div class="header-inner">
                         <?php
