@@ -111,61 +111,9 @@ section {
     font-style: normal;
 }
 
-/** Services section **/
-
-.services-description {
-    max-width: 850px;
-    text-align: center;
-    margin: 0 auto;
-}
-
-.services-description-content {
-    font-size: 27px;
-    margin-top: 40px;
-}
-
 /** Partners section **/
 
 .partners-list {
     display: flex;
     justify-content: space-around;
-}
-
-/** Examples section **/
-
-.examples-section-title {
-    font-size: 48px;
-    text-align: center;
-}
-
-.examples-header-list {
-    margin-top: 50px;
-    list-style: none;
-    display: flex;
-    justify-content: center;
-}
-
-.examples-header-item {
-    padding-right: 30px;
-    padding-left: 30px;
-}
-
-.examples-header-link {
-    font-size: 24px;
-}
-
-.examples-header-link:hover {
-    color: #CDAA7D;
-}
-
-.examples-list {
-    margin-top: 50px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-    grid-gap: 2rem;
-}
-
-.examples-img {
-    object-fit: cover;
-    width: 100%;
 }
