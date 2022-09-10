@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,body {
+    min-height: 100vh;
+}
+
+body {
+    background-color: #111111;
+    color: #ffffff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1 0 auto;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+section {
+    padding-top: 100px;
+}
+
+/** Header **/
+
+.header {
+    z-index: 999;
+    background-color: #111111;
+    position: fixed;
+    width: 100%;
+}
+
+.header-inner {
+    border-bottom: 1px solid #CDAA7D;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/** Footer **/
+
+.footer {
+    width: 100%;
+    flex: 0 0 auto;
+    margin-top: 100px;
+}
+
+.footer-inner {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 2rem;
+}
+
+.footer-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.footer-text {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.footer-copyright {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 18px;
+}
+
+/** Main section **/
+
+.main-section {
+    padding-top: 100px;
+    min-height: 100vh;
+    background: url("/local/templates/main/img/bg_main.png");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-section-header {
+    text-align: center;
+    max-width: 500px;
+}
+
+.main-section-title {
+    font-size: 72px;
+    font-style: normal;
+}
+
+/** Services section **/
+
+.services-description {
+    max-width: 850px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.services-description-content {
+    font-size: 27px;
+    margin-top: 40px;
+}
+
+/** Partners section **/
+
+.partners-list {
+    display: flex;
+    justify-content: space-around;
+}
+
+/** Examples section **/
+
+.examples-section-title {
+    font-size: 48px;
+    text-align: center;
+}
+
+.examples-header-list {
+    margin-top: 50px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.examples-header-item {
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.examples-header-link {
+    font-size: 24px;
+}
+
+.examples-header-link:hover {
+    color: #CDAA7D;
+}
+
+.examples-list {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    grid-gap: 2rem;
+}
+
+.examples-img {
+    object-fit: cover;
+    width: 100%;
+}

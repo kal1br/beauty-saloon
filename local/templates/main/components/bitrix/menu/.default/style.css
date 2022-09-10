@@ -1,0 +1,13 @@
+.nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-link:hover {
+    color: #CDAA7D;
+}
+
+.nav-list .active {
+    color: #CDAA7D;
+}

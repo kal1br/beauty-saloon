@@ -1,0 +1,24 @@
+.services-list {
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    grid-gap: 2rem;
+}
+
+.services-img-block {
+    margin-left: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #CDAA7D;
+}
+
+.services-img {
+    position: relative;
+    right: 15px;
+    top: 15px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.services-item-title {
+    font-size: 30px;
+}

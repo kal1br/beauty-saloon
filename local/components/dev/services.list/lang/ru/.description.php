@@ -1,0 +1,6 @@
+<?php
+if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die();
+
+$MESS['DEV_SERVICES_LIST_DESCRIPTION_NAME'] = 'Список услуг';
+$MESS['DEV_SERVICES_LIST_DESCRIPTION_DESCRIPTION'] = 'Список услуг';
+$MESS['DEV_SERVICES_LIST_DESCRIPTION_PATH_NAME'] = 'Компоненты проекта';
