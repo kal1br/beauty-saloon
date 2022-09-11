@@ -2,31 +2,30 @@ document.addEventListener('DOMContentLoaded', () => {
     let buttons = Array.from(document.getElementsByClassName('examples-header-link'));
 
     buttons.forEach(item => {
-        item.onclick = (e) => {
-            let request = fetch('/ajax/examples.php?id=' + e.target.value);
+        item.onclick = (element) => {
+            // Очистить блок примера работ
             document.getElementById('examples-list').innerHTML = '';
+            // Убрать активность с заголовка
             document.querySelector('button[class="examples-header-link active"]').classList.remove('active');
+            // Включить лоадер
             document.querySelector('.loader-block').style.display = 'flex';
 
-            request
+            fetch('/ajax/examples.php?id=' + element.target.value)
                 .then(response => {
                     return response.json();
                 })
                 .then(data => {
+                    // Выключить лоадер
                     document.querySelector('.loader-block').style.display = 'none';
+                    // Поставить активность новому заголовку
+                    document.querySelector(`button[value="${data.id}"]`).classList.add('active');
 
-                    let examples = data.examples;
-                    let id = data.id;
-
-                    document.querySelector(`button[value="${id}"]`).classList.add('active');
-
-                    let examplesList = document.getElementById('examples-list');
-
+                    // Заполнить блок примера работ
                     let html = '';
-                    for (let example of examples) {
+                    for (let example of data.examples) {
                         html +=`<div class="examples-item"><img class="examples-img" src="${example.img}" alt="example"></div>`;
                     }
-                    examplesList.innerHTML = html;
+                    document.getElementById('examples-list').innerHTML = html;
                 })
                 .catch(error => {
                     console.log(error);
