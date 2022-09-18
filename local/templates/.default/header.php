@@ -11,8 +11,6 @@ use Bitrix\Main\Page\Asset;
     <?php $APPLICATION->ShowHead(); ?>
 
     <?php
-        Asset::getInstance()->addCss(DEFAULT_TEMPLATE_PATH . '/css/style.css');
-
         Asset::getInstance()->addJs(DEFAULT_TEMPLATE_PATH . '/js/script.js');
 
         Asset::getInstance()->addString('<meta charset="UTF-8">');
