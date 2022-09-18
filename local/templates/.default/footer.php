@@ -5,7 +5,7 @@
         <footer class="footer container">
             <div class="footer-inner">
                 <div class="footer-logo">
-                    <img src="/local/templates/.default/img/footer/logo.png" alt="logo">
+                    <img src="/local/templates/.default/images/footer/logo.png" alt="logo">
                 </div>
 
                 <div class="footer-contacts">
@@ -23,11 +23,11 @@
 
                 <div class="footer-social">
                     <h3 class="footer-title">Мы в Instagram</h3>
-                    <img src="/local/templates/.default/img/footer/instagram.png" alt="insta">
+                    <img src="/local/templates/.default/images/footer/instagram.png" alt="insta">
                 </div>
             </div>
 
-            <p class="footer-copyright">Copyright © 2017 - 2022</p>
+            <p class="footer-copyright">Copyright © 2022 - 2022</p>
         </footer>
     </div> <!-- End .wrapper -->
 </body>

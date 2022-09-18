@@ -30,19 +30,19 @@ $APPLICATION->IncludeComponent(
     <div class="container">
         <div class="partners-list">
             <div class="partners-item">
-                <img src="/local/templates/main/img/partners/kevin.png" alt="kevin murphy">
+                <img src="/local/templates/.default/images/partners/kevin.png" alt="kevin murphy">
             </div>
 
             <div class="partners-item">
-                <img src="/local/templates/main/img/partners/kevin.png" alt="kevin murphy">
+                <img src="/local/templates/.default/images/partners/kevin.png" alt="kevin murphy">
             </div>
 
             <div class="partners-item">
-                <img src="/local/templates/main/img/partners/kevin.png" alt="kevin murphy">
+                <img src="/local/templates/.default/images/partners/kevin.png" alt="kevin murphy">
             </div>
 
             <div class="partners-item">
-                <img src="/local/templates/main/img/partners/kevin.png" alt="kevin murphy">
+                <img src="/local/templates/.default/images/partners/kevin.png" alt="kevin murphy">
             </div>
         </div>
     </div>

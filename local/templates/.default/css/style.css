@@ -95,7 +95,7 @@ section {
 .main-section {
     padding-top: 100px;
     min-height: 100vh;
-    background: url("/local/templates/.default/img/bg_main.png");
+    background: url("/local/templates/.default/images/bg_main.png");
     display: flex;
     align-items: center;
     justify-content: center;
