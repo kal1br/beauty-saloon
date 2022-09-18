@@ -1,10 +1,10 @@
 <?php
 if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die();
 
-use \Bitrix\Main\Loader;
+use Bitrix\Main\Loader;
 use Bitrix\Main\Localization\Loc;
 
-class ExamplesComponent extends \CBitrixComponent
+class ExamplesComponent extends CBitrixComponent
 {
     /**
      * Подготовка параметров компонента
@@ -114,7 +114,7 @@ class ExamplesComponent extends \CBitrixComponent
     private function checkModules(): void
     {
         if (!Loader::includeModule('iblock')) {
-            throw new \Exception(Loc::getMessage('DEV_EXAMPLES_CLASS_ERROR'));
+            throw new Exception(Loc::getMessage('DEV_EXAMPLES_CLASS_ERROR'));
         }
 
     }
