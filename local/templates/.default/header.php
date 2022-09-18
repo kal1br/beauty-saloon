@@ -50,6 +50,17 @@ use Bitrix\Main\Page\Asset;
                         );
                         ?>
                     </div>
+                    <?php
+                    $APPLICATION->IncludeComponent(
+                        'bitrix:breadcrumb',
+                        '',
+                        [
+                            'PATH' => '',
+                            'SITE_ID' => 's1',
+                            'START_FROM' => '0'
+                        ]
+                    );
+                    ?>
                 </div>
             </header>
 
