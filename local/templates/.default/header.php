@@ -6,7 +6,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED!==true) die();
 use Bitrix\Main\Page\Asset;
 ?>
 <!doctype html>
-<html lang="en">
+<html lang="<?= LANGUAGE_ID ?>">
 <head>
     <?php $APPLICATION->ShowHead(); ?>
 
