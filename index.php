@@ -60,4 +60,18 @@ $APPLICATION->IncludeComponent(
 );
 ?>
 
+<?php
+$APPLICATION->IncludeComponent(
+    'bitrix:advertising.banner',
+    '',
+    [
+        'CACHE_TIME' => '0',
+        'CACHE_TYPE' => 'A',
+        'NOINDEX' => 'N',
+        'QUANTITY' => '1',
+        'TYPE' => 'advertising'
+    ]
+);
+?>
+
 <?php require($_SERVER['DOCUMENT_ROOT'] . '/bitrix/footer.php'); ?>
