@@ -9,7 +9,7 @@ use Bitrix\Main\Localization\Loc;
         <footer class="footer container">
             <div class="footer-inner">
                 <div class="footer-logo">
-                    <img src="/local/templates/.default/images/footer/logo.png" alt="logo">
+                    <img src="<?= MAIN_TEMPLATE_PATH ?>/images/footer/logo.png" alt="logo">
                 </div>
 
                 <div class="footer-contacts">
@@ -26,7 +26,7 @@ use Bitrix\Main\Localization\Loc;
 
                 <div class="footer-social">
                     <h3 class="footer-title"><?= Loc::getMessage('FOOTER_INSTAGRAM') ?></h3>
-                    <img src="/local/templates/.default/images/footer/instagram.png" alt="insta">
+                    <img src="<?= MAIN_TEMPLATE_PATH ?>/images/footer/instagram.png" alt="insta">
                 </div>
             </div>
 

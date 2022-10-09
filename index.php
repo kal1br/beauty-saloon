@@ -21,7 +21,7 @@ $APPLICATION->IncludeComponent(
     [
         'CACHE_TIME' => '3600',
         'CACHE_TYPE' => 'A',
-        'IBLOCK_ID' => '3',
+        'IBLOCK_ID' => '1',
     ]
 );
 ?>
@@ -30,19 +30,19 @@ $APPLICATION->IncludeComponent(
     <div class="container">
         <div class="partners-list">
             <div class="partners-item">
-                <img src="/local/templates/.default/images/partners/kevin.png" alt="kevin murphy">
+                <img src="<?= MAIN_TEMPLATE_PATH . '/images/partners/kevin.png' ?>" alt="kevin murphy">
             </div>
 
             <div class="partners-item">
-                <img src="/local/templates/.default/images/partners/kevin.png" alt="kevin murphy">
+                <img src="<?= MAIN_TEMPLATE_PATH . '/images/partners/kevin.png' ?>" alt="kevin murphy">
             </div>
 
             <div class="partners-item">
-                <img src="/local/templates/.default/images/partners/kevin.png" alt="kevin murphy">
+                <img src="<?= MAIN_TEMPLATE_PATH . '/images/partners/kevin.png' ?>" alt="kevin murphy">
             </div>
 
             <div class="partners-item">
-                <img src="/local/templates/.default/images/partners/kevin.png" alt="kevin murphy">
+                <img src="<?= MAIN_TEMPLATE_PATH . '/images/partners/kevin.png' ?>" alt="kevin murphy">
             </div>
         </div>
     </div>

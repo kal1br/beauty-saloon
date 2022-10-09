@@ -11,7 +11,7 @@ use Bitrix\Main\Page\Asset;
     <?php $APPLICATION->ShowHead(); ?>
 
     <?php
-        Asset::getInstance()->addJs(DEFAULT_TEMPLATE_PATH . '/js/script.js');
+        Asset::getInstance()->addJs(MAIN_TEMPLATE_PATH . '/js/script.js');
 
         Asset::getInstance()->addString('<meta charset="UTF-8">');
         Asset::getInstance()->addString('<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">');

@@ -1,8 +1,12 @@
 <?php
 if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die();
 
+use Bitrix\Main\ArgumentException;
 use Bitrix\Main\Loader;
+use Bitrix\Main\LoaderException;
 use Bitrix\Main\Localization\Loc;
+use Bitrix\Main\ObjectPropertyException;
+use Bitrix\Main\SystemException;
 
 class ServicesListComponent extends CBitrixComponent
 {
@@ -15,47 +19,52 @@ class ServicesListComponent extends CBitrixComponent
 
         $arParams['CACHE_TIME'] = (int)$arParams['CACHE_TIME'] ?? 3600;
         $arParams['CACHE_TYPE'] = $arParams['CACHE_TYPE'] ?? 'A';
-        $arParams['IBLOCK_ID'] = (int)$arParams['IBLOCK_ID'] ?? 3;
+        $arParams['IBLOCK_ID'] = (int)$arParams['IBLOCK_ID'] ?? 1;
 
         return $arParams;
     }
 
     /**
-     * @throws \Bitrix\Main\LoaderException
+     * @throws LoaderException
+     * @throws ArgumentException
+     * @throws ObjectPropertyException
+     * @throws SystemException
      */
     public function executeComponent()
     {
         $this->checkModules();
-        $this->arResult = array_merge($this->arResult, $this->getServicesListArray());
+        $this->getServicesList();
         $this->includeComponentTemplate();
     }
 
-    public function getServicesListArray(): array
+    /**
+     * @throws ObjectPropertyException
+     * @throws SystemException
+     * @throws ArgumentException
+     */
+    public function getServicesList()
     {
         $result = [];
 
-        $res = CIBlockElement::GetList(
-            ['created ' => 'ASC'],
-            ['IBLOCK_ID' => $this->arParams['IBLOCK_ID']],
-            false,
-            ['nPageSize' => 6],
-            ['NAME', 'PREVIEW_PICTURE']
-        );
+        $elements = \Bitrix\Iblock\SectionTable::getList([
+            'filter' => ['IBLOCK_ID' => $this->arParams['IBLOCK_ID']],
+            'select' => ['NAME', 'PICTURE'],
+        ])->fetchCollection();
 
-        while ($item = $res->fetch()) {
+        foreach ($elements as $element) {
             $result[] = [
-                'name' => $item['NAME'],
-                'img' => CFile::GetPath($item['PREVIEW_PICTURE'])
+                'name' => $element->getName(),
+                'img' => CFile::GetPath($element->getPicture())
             ];
         }
 
-        return $result;
+        $this->arResult = array_merge($this->arResult, $result);
     }
 
     /**
      * Проверка наличия модулей для работы компонента
      * @return void
-     * @throws \Bitrix\Main\LoaderException
+     * @throws LoaderException
      * @throws \Exception
      */
     private function checkModules(): void
