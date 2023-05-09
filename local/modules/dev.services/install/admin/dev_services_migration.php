@@ -1,0 +1,1 @@
+<?php require($_SERVER['DOCUMENT_ROOT'].'/local/modules/dev.services/admin/dev_services_migration.php');

@@ -1,0 +1,5 @@
+<?php
+
+$MESS['DEV_SERVICES_MENU_TITLE'] = 'Услуги';
+$MESS['DEV_SERVICES_MENU_TEXT'] = 'Услуги';
+$MESS['DEV_SERVICES_MENU_MIGRATION'] = 'Миграция';
