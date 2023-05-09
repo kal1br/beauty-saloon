@@ -15,37 +15,45 @@ class ExamplesComponent extends CBitrixComponent
 
         $arParams['CACHE_TIME'] = (int)$arParams['CACHE_TIME'] ?? 3600;
         $arParams['CACHE_TYPE'] = $arParams['CACHE_TYPE'] ?? 'A';
-        $arParams['IBLOCK_ID'] = (int)$arParams['IBLOCK_ID'] ?? 4;
+        $arParams['IBLOCK_CODE'] = $arParams['IBLOCK_CODE'] ?? 'services';
 
         return $arParams;
     }
 
     /**
-     * @throws \Bitrix\Main\LoaderException
+     * @throws Exception
      */
     public function executeComponent()
     {
         $this->checkModules();
         $this->arResult['sections'] = $this->getSections();
         $this->arResult['examples'] = $this->getExamplesArray();
-        $this->includeComponentTemplate();
+
+        if ($this->arResult['examples']) {
+            $this->includeComponentTemplate();
+        }
     }
 
+    /**
+     * @return array
+     * @throws Exception
+     */
     public function getSections(): array
     {
         $result = [];
 
-        $res = CIBlockSection::GetList(
-            ['SORT' => 'ASC'],
-            ['IBLOCK_ID' => $this->arParams['IBLOCK_ID']],
-            true,
-            ['*'],
-        );
+        $rsSections = \Bitrix\Iblock\SectionTable::getList([
+            'filter' => [
+                '=IBLOCK.CODE' => $this->arParams['IBLOCK_CODE'],
+                '=ACTIVE' => 'Y'
+            ],
+            'select' => ['ID', 'NAME']
+        ]);
 
-        while ($item = $res->fetch()) {
+        while ($arSection = $rsSections->fetch()) {
             $result[] = [
-                'id' => $item['ID'],
-                'name' => $item['NAME']
+                'id' => $arSection['ID'],
+                'name' => $arSection['NAME']
             ];
         }
 
@@ -53,7 +61,7 @@ class ExamplesComponent extends CBitrixComponent
     }
 
     /**
-     * @throws \Bitrix\Main\LoaderException
+     * @throws Exception
      */
     public function getExamplesBySectionId($id): array
     {
@@ -61,23 +69,21 @@ class ExamplesComponent extends CBitrixComponent
 
         $result = [];
 
-        $filter['IBLOCK_ID'] = $this->arParams['IBLOCK_ID'];
-
+        $filter['=IBLOCK.CODE'] = 'services';
         if ($id) {
-            $filter['SECTION_ID'] = $id;
+            $filter['=IBLOCK_SECTION_ID'] = $id;
         }
 
-        $res = CIBlockElement::GetList(
-            ['created ' => 'ASC'],
-            $filter,
-            false,
-            ['nPageSize' => 9],
-            ['PREVIEW_PICTURE']
-        );
+        $rsElements = \Bitrix\Iblock\ElementTable::getList([
+            'order' => ['DATE_CREATE' => 'ASC'],
+            'filter' => $filter,
+            'limit' => 9,
+            'select' => ['PREVIEW_PICTURE', 'IBLOCK_SECTION_ID']
+        ]);
 
-        while ($item = $res->fetch()) {
+        while ($arElement = $rsElements->fetch()) {
             $result[] = [
-                'img' => CFile::GetPath($item['PREVIEW_PICTURE'])
+                'img' => CFile::GetPath($arElement['PREVIEW_PICTURE'])
             ];
         }
 
@@ -88,17 +94,19 @@ class ExamplesComponent extends CBitrixComponent
     {
         $result = [];
 
-        $res = CIBlockElement::GetList(
-            ['created ' => 'ASC'],
-            ['IBLOCK_ID' => $this->arParams['IBLOCK_ID']],
-            false,
-            ['nPageSize' => 9],
-            ['PREVIEW_PICTURE']
-        );
+        $rsElements = \Bitrix\Iblock\ElementTable::getList([
+            'order' => ['DATE_CREATE' => 'ASC'],
+            'filter' => [
+                '=IBLOCK.CODE' => $this->arParams['IBLOCK_CODE'],
+                '=ACTIVE' => 'Y'
+            ],
+            'limit' => 9,
+            'select' => ['PREVIEW_PICTURE']
+        ]);
 
-        while ($item = $res->fetch()) {
+        while ($arElement = $rsElements->fetch()) {
             $result[] = [
-                'img' => CFile::GetPath($item['PREVIEW_PICTURE'])
+                'img' => CFile::GetPath($arElement['PREVIEW_PICTURE'])
             ];
         }
 
@@ -108,8 +116,7 @@ class ExamplesComponent extends CBitrixComponent
     /**
      * Проверка наличия модулей для работы компонента
      * @return void
-     * @throws \Bitrix\Main\LoaderException
-     * @throws \Exception
+     * @throws Exception
      */
     private function checkModules(): void
     {

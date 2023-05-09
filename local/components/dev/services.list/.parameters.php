@@ -10,10 +10,12 @@ if (!Loader::includeModule('iblock')) {
 
 $arIBlock = [];
 
-$rsIBlock = CIBlock::GetList(['SORT' => 'ASC'], ['ACTIVE' => 'Y']);
+$rsIBlock = \Bitrix\Iblock\IblockTable::getList([
+    'filter' => ['=ACTIVE' => 'Y']
+]);
 
-while ($arr = $rsIBlock->Fetch()) {
-    $arIBlock[$arr['ID']] = '['.$arr['ID'].'] '.$arr['NAME'];
+while ($arr = $rsIBlock->fetch()) {
+    $arIBlock[$arr['CODE']] = '['.$arr['CODE'].'] '.$arr['NAME'];
 }
 
 $arComponentParameters = [
@@ -24,9 +26,9 @@ $arComponentParameters = [
         ],
     ],
     'PARAMETERS' => [
-        'IBLOCK_ID' => [
+        'IBLOCK_CODE' => [
             'PARENT' => 'SETTINGS',
-            'NAME' => Loc::getMessage('DEV_SERVICES_LIST_PARAMS_PROP_IBLOCK_ID'),
+            'NAME' => Loc::getMessage('DEV_SERVICES_LIST_PARAMS_PROP_IBLOCK_CODE'),
             'TYPE' => 'LIST',
             'ADDITIONAL_VALUES' => 'Y',
             'VALUES' => $arIBlock,

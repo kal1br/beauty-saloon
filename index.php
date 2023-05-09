@@ -21,7 +21,7 @@ $APPLICATION->IncludeComponent(
     [
         'CACHE_TIME' => '3600',
         'CACHE_TYPE' => 'A',
-        'IBLOCK_ID' => '1',
+        'IBLOCK_CODE' => 'services',
     ]
 );
 ?>
@@ -55,7 +55,7 @@ $APPLICATION->IncludeComponent(
     [
         'CACHE_TIME' => '3600',
         'CACHE_TYPE' => 'A',
-        'IBLOCK_ID' => '4',
+        'IBLOCK_CODE' => 'services',
     ]
 );
 ?>

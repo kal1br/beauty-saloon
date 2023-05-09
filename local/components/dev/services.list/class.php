@@ -1,12 +1,9 @@
 <?php
 if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die();
 
-use Bitrix\Main\ArgumentException;
+use Bitrix\Iblock\SectionTable;
 use Bitrix\Main\Loader;
-use Bitrix\Main\LoaderException;
 use Bitrix\Main\Localization\Loc;
-use Bitrix\Main\ObjectPropertyException;
-use Bitrix\Main\SystemException;
 
 class ServicesListComponent extends CBitrixComponent
 {
@@ -19,16 +16,13 @@ class ServicesListComponent extends CBitrixComponent
 
         $arParams['CACHE_TIME'] = (int)$arParams['CACHE_TIME'] ?? 3600;
         $arParams['CACHE_TYPE'] = $arParams['CACHE_TYPE'] ?? 'A';
-        $arParams['IBLOCK_ID'] = (int)$arParams['IBLOCK_ID'] ?? 1;
+        $arParams['IBLOCK_CODE'] = $arParams['IBLOCK_CODE'] ?? 'services';
 
         return $arParams;
     }
 
     /**
-     * @throws LoaderException
-     * @throws ArgumentException
-     * @throws ObjectPropertyException
-     * @throws SystemException
+     * @throws Exception
      */
     public function executeComponent()
     {
@@ -38,23 +32,25 @@ class ServicesListComponent extends CBitrixComponent
     }
 
     /**
-     * @throws ObjectPropertyException
-     * @throws SystemException
-     * @throws ArgumentException
+     * Получить список услуг
+     * @throws Exception
      */
     public function getServicesList()
     {
         $result = [];
 
-        $elements = \Bitrix\Iblock\SectionTable::getList([
-            'filter' => ['IBLOCK_ID' => $this->arParams['IBLOCK_ID']],
+        $rsSections = SectionTable::getList([
+            'filter' => [
+                '=IBLOCK.CODE' => $this->arParams['IBLOCK_CODE'],
+                '=ACTIVE' => 'Y'
+            ],
             'select' => ['NAME', 'PICTURE'],
-        ])->fetchCollection();
+        ]);
 
-        foreach ($elements as $element) {
+        while ($arSection = $rsSections->fetch()) {
             $result[] = [
-                'name' => $element->getName(),
-                'img' => CFile::GetPath($element->getPicture())
+                'name' => $arSection['NAME'],
+                'img' => CFile::GetPath($arSection['PICTURE'])
             ];
         }
 
@@ -64,14 +60,12 @@ class ServicesListComponent extends CBitrixComponent
     /**
      * Проверка наличия модулей для работы компонента
      * @return void
-     * @throws LoaderException
-     * @throws \Exception
+     * @throws Exception
      */
     private function checkModules(): void
     {
         if (!Loader::includeModule('iblock')) {
             throw new Exception(Loc::getMessage('DEV_SERVICES_LIST_CLASS_ERROR'));
         }
-
     }
 }
